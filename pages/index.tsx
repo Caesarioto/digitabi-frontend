@@ -40,9 +40,10 @@ export default function Home() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-orange-100">
       <div className="w-full max-w-3xl bg-white p-12 rounded-xl shadow-2xl">
        <div className="flex flex-col items-center mb-10">
-  <img src="/bildname.png" alt="Digitabi Logo" className="w-28 h-auto mb-4" />
+  <img src="/bildname.jpg" alt="Digitabi Logo" className="w-28 h-auto mb-4" />
   <h1 className="text-4xl font-extrabold text-center text-blue-600">Digitabi</h1>
 </div>
+
 
         {step === 0 && (
           <div>
