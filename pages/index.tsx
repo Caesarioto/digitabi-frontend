@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default function Home() {
   const [step, setStep] = useState(0);
+  const [mode, setMode] = useState<'config' | 'steckbrief'>('config');
   const [form, setForm] = useState({
     year: 2025,
     persons: 85,
@@ -39,12 +40,31 @@ export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-orange-100">
       <div className="w-full max-w-3xl bg-white p-12 rounded-xl shadow-2xl">
-       <div className="flex flex-col items-center mb-10">
-  <img src="/bildname.jpg" alt="Digitabi Logo" className="w-28 h-auto mb-4" />
-  <h1 className="text-4xl font-extrabold text-center text-blue-600">Digitabi</h1>
+       <h1 className="text-4xl font-extrabold text-center text-blue-600 mb-6">Digitabi</h1>
+
+<div className="flex justify-center gap-4 mb-10">
+  <button
+    onClick={() => setMode('config')}
+    className={`px-6 py-2 rounded font-semibold transition ${
+      mode === 'config' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+    }`}
+  >
+    Abibuch-Konfigurator
+  </button>
+  <button
+    onClick={() => setMode('steckbrief')}
+    className={`px-6 py-2 rounded font-semibold transition ${
+      mode === 'steckbrief' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+    }`}
+  >
+    Steckbrief-Editor
+  </button>
 </div>
 
 
+        {mode === 'config' && (
+  <>
+   
         {step === 0 && (
           <div>
             <p className="mb-4 text-xl font-semibold text-gray-800">Für welches Jahr?</p>
@@ -254,7 +274,47 @@ export default function Home() {
             </div>
           </div>
         )}
+        </>
+    )}
+
+   {mode === 'steckbrief' && (
+  <div className="space-y-4">
+    {[
+      'Leistungskurs',
+      'Lieblingsfach',
+      'Hassfach',
+      'Lieblingslehrer',
+      'Hasslehrer',
+      'Lieblingsbeschäftigung im Unterricht',
+      'Bestes Schulerlebnis',
+      'Plan nach dem Abi',
+      'Mein Vorbild',
+      '3 Dinge ohne die ich die Schulzeit nicht überstanden hätte',
+      'Motivationslevel in der Schule',
+      'Schule in 3 Worten',
+      'LK in 3 Worten',
+      '3 Dinge die ich auf eine einsame Insel mitnehmen würde',
+      'Als Lehrer würde ich...',
+      'Das werde ich am meisten vermissen',
+      'Das werde ich gar nicht vermissen',
+      'Da sehe ich mich in 10 Jahren',
+      'Das erste Wort an das ich denke wenn ich die folgenden Wörter höre: Schule/Freunde/Alkohol',
+      'Wenn ich im Lotto gewinnen würde...',
+      'Titel meiner Autobiografie'
+    ].map((label) => (
+      <div key={label}>
+        <label className="block text-lg font-medium text-gray-700">{label}</label>
+        <input
+          type="text"
+          className="mt-1 block w-full p-2 border border-gray-300 rounded"
+          placeholder="Antwort eingeben..."
+        />
       </div>
-    </div>
+    ))}
+  </div>
+)}
+      </div>
+    </div>   
   );
 }
+
